@@ -13,8 +13,8 @@ def wave(people):
     word = list(people)
     for i in range(len(people)):
         if(word[i] == ' '):
-            word[i-1] = word[i-1].lower() 
-            continue
+            word[i-1] = word[i-1].lower()
+            continue 
         else: 
             word[i] = word[i].upper()
             if i > 0:
