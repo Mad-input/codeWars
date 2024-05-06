@@ -13,20 +13,10 @@
 # zeros(12) = 2
 # # 12! = 479001600 --> 2 trailing zeros
 # Hint: You're not meant to calculate the factorial. Find another way to find the number of zeros.
-import sys
-sys.set_int_max_str_digits(0)
-
 def zeros(n):
-    res = 1
     count = 0
-
-    for d in range(n):
-        res *= d + 1
-    for zero in reversed(list(str(res))):
-        if int(zero) != 0:
-            break
-        else: count += 1
-    return count 
-
-print(zeros(100000))   
+    while n:
+        n = n // 5
+        count += n
+    return count
     

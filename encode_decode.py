@@ -28,9 +28,6 @@ def encode(st):
             new_st += str(vocals[c])
         else: new_st += c
     return new_st
-
-print(encode('How are you today?'))
-            
         
     
 def decode(st):
@@ -48,4 +45,3 @@ def decode(st):
         else: new_st += c
     return new_st
 
-print(decode(encode('How are you today?')))
