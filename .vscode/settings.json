@@ -1,5 +1,21 @@
 {
     "cSpell.enableFiletypes": [
         "!javascript"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "TestConection",
+            "database": "TaksBoard",
+            "username": "root",
+            "askForPassword": true
+        }
     ]
 }
