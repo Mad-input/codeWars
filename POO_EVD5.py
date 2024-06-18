@@ -171,7 +171,7 @@ Agregue los métodos necesarios dentro de la clase para que continúe su funcion
 """
 5. Realice el método ver_escala() que al ser invocado en la clase Estudiante presente una tabla con la escala de calificación de todos los estudiantes de la institución. Esta escala es la siguiente: Permita que al invocar al método desde la clase Estudiante.ver_escala() se muestre la tabla anterior. Utilice el módulo tabulate para que la presentación sea la indicada.
 """
-import tabulate
+from tabulate import tabulate
 
 class Estudiante:
     institucion= 'Alguna Institucion'
