@@ -147,7 +147,7 @@ class GameCountry(ControllerGame):
     def Start(self):
         
         #Inicia el juego
-        print('Bienvenio al juego de los paises.\nDonde tendras que responder pregutas\n')
+        print('Bienvenio al juego de los paises.\nDonde tendras que responder preguntas\n')
         print('Iniciando...')
         time.sleep(1)
         print('Iniciando..')
@@ -157,11 +157,11 @@ class GameCountry(ControllerGame):
         
         pases = 0
         while True:
-            if self.attempts >= self.maxAttempts:
+            if self.attempts > self.maxAttempts:
                 self.game_over(f'{self.BG_MAGENTA}{self.BRIGHT}Perdiste, Juego Terminado{self.RESET}')
                 break
             else:
-                if pases >= len(self.choices) - 1:
+                if pases > len(self.choices) - 1:
                     self.game_over(f'{self.BG_CYAN}Felicidades Ganaste!{self.RESET}')
                     break 
                 else:
