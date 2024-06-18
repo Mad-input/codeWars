@@ -57,13 +57,131 @@ class CuentaBancaria:
         else:
             return print('Cuenta Invalida!, revise el tipo de moneda que esta enviando o el numero de cuenta')
 
+#? usage
+# cuenta1 = CuentaBancaria(424324234,'Miguel', 100000, 'COP')
+# cuenta2 = CuentaBancaria(424324234,'Daniela', 20_000)
+# cuenta3 = CuentaBancaria(424324234,'Juan', 30_000)
+# cuenta2.depositar(0)
+# cuenta3.transferir(cuenta1, 10_000, 'COP')
+# cuenta1.retirar(120_000)
 
-cuenta1 = CuentaBancaria(424324234,'Miguel', 100000, 'COP')
-cuenta2 = CuentaBancaria(424324234,'Daniela', 20_000)
-cuenta3 = CuentaBancaria(424324234,'Juan', 30_000)
 
-cuenta2.depositar(0)
-cuenta3.transferir(cuenta1, 10_000, 'COP')
+#? Game
 
+from abc import ABC, abstractmethod, ABCMeta
+import time
 
-cuenta1.retirar(120_000)
+class ControllerGame(metaclass= ABCMeta):
+    @abstractmethod
+    def Start(self):
+        pass
+    
+    @abstractmethod
+    def game_over(self):
+        pass
+    
+    @abstractmethod
+    def show_points(self):
+        pass
+    
+    
+class GameCountry(ControllerGame):
+    #Colores de la consola
+    RESET = "\033[0m"
+    RED = "\033[31m"
+    MAGENTA = "\033[35m"
+    BG_YELLOW = "\033[43m"
+    BG_BLUE = "\033[44m"
+    BG_MAGENTA = "\033[45m"
+    BG_CYAN = "\033[46m"
+    BG_WHITE = "\033[47m"
+    # Códigos ANSI para estilos de texto
+    BRIGHT = "\033[1m"
+    DIM = "\033[2m"
+    points = 0
+    attempts = 0
+    maxAttempts = 5
+    choices = [
+    {
+        "choice": "¿Cuál es la capital de Francia?",
+        "answer": "paris"
+    },
+    {
+        "choice": "¿Cuál es la capital de España?",
+        "answer": "madrid"
+    },
+    {
+        "choice": "¿Cuál es la capital de Alemania?",
+        "answer": "berlin"
+    },
+    {
+        "choice": "¿Cuál es la capital de Italia?",
+        "answer": "roma"
+    },
+    {
+        "choice": "¿Cuál es la capital de Reino Unido?",
+        "answer": "londres"
+    },
+    {
+        "choice": "¿Cuál es la capital de Japón?",
+        "answer": "tokio"
+    },
+    {
+        "choice": "¿Cuál es la capital de Canadá?",
+        "answer": "ottawa"
+    },
+    {
+        "choice": "¿Cuál es la capital de Australia?",
+        "answer": "canberra"
+    },
+    {
+        "choice": "¿Cuál es la capital de Brasil?",
+        "answer": "brasilia"
+    },
+    {
+        "choice": "¿Cuál es la capital de México?",
+        "answer": "ciudad de mexico"
+    }
+]
+
+    def Start(self):
+        
+        #Inicia el juego
+        print('Bienvenio al juego de los paises.\nDonde tendras que responder pregutas\n')
+        print('Iniciando...')
+        time.sleep(1)
+        print('Iniciando..')
+        time.sleep(1)
+        print('Iniciando.')
+        time.sleep(1)
+        
+        pases = 0
+        while True:
+            if self.attempts >= self.maxAttempts:
+                self.game_over(f'{self.BG_MAGENTA}{self.BRIGHT}Perdiste, Juego Terminado{self.RESET}')
+                break
+            else:
+                if pases >= len(self.choices) - 1:
+                    self.game_over(f'{self.BG_CYAN}Felicidades Ganaste!{self.RESET}')
+                    break 
+                else:
+                    choice = self.choices[pases]
+                    userAnswer = input(f'{choice.get('choice')}: ')
+                    
+                if userAnswer.lower() == choice.get('answer'):
+                    print(f'{self.MAGENTA}Respuesta Correcta!, +1 punto{self.RESET}')
+                    self.points += 1
+                else:
+                    print(f'{self.RED}Respuesta Incorrecta! -1 punto{self.RESET}')
+                    print(f'{self.RED}Intentos Restantes: {self.maxAttempts - self.attempts}{self.RESET}')
+                    if self.points > 0:
+                        self.points -= 1   
+                        
+                    self.attempts += 1
+                pases += 1
+    def game_over(self, message):
+        return  print(message, self.show_points())
+    def show_points(self):
+        return f"{self.BG_BLUE}Cantidad total de puntos: {self.points}{self.RESET}"
+    
+GameCountry().Start() 
