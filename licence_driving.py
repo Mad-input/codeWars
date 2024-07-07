@@ -44,21 +44,13 @@ def driver(data):
     "Nov": '11',
     "Dec": '12'
     }
-    firts_name = data[0]
-    last_name = data[1]
-    surname= data[2]
-    birth = data[3]
+    firts_name,last_name,surname,birth, genre = data
+    
     month_day = birth[:-5].split('-')
     prefix = month_day[1][:3]
-    month = months[prefix]
+    month = int(months[prefix]) + (50 if genre == 'F' else 0)
     day = month_day[0]
     year = birth[-4:]
-    genre = data[4]
-    
-    
-    if(genre == 'F'):
-        month = int(month) + 50
-        month_day[1] = month
     
     if len(last_name)< 1:
         last_name = '9'
